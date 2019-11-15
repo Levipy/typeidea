@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
-
+#分类
 class Category(models.Model):
+    # inlines = ['PostInline', ]
     STATUS_NORMAL = 1
     STATUS_DELETE = 0
     STATUS_ITEMS = (
@@ -19,6 +20,10 @@ class Category(models.Model):
         #db_table = 'Category'
         verbose_name = verbose_name_plural = '分类'
 
+    def __str__(self):
+        return self.name
+
+# 标签
 class Tag(models.Model):
     STATUS_NORMAL = 1
     STATUS_DELETE = 0
@@ -35,6 +40,10 @@ class Tag(models.Model):
         #db_table = 'Tag'
         verbose_name = verbose_name_plural = '标签'
 
+    def __str__(self):
+        return self.name
+
+# 文章
 class Post(models.Model):
     STATUS_NORMAL = 1
     STATUS_DELETE = 0
@@ -58,6 +67,9 @@ class Post(models.Model):
         #db_table = 'Post'
         verbose_name = verbose_name_plural = '文章'
         ordering = ['id'] #根据id进行降序排列
+
+    def __str__(self):
+        return self.title
 
 
 
